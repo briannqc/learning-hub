@@ -7,3 +7,5 @@ Projects:
 
 - [Money Transfer](https://learn.temporal.io/getting_started/go/first_program_in_go/) - Run your first Temporal
   application with the Go SDK
+- [Greeting](https://learn.temporal.io/getting_started/go/hello_world_in_go/) - Build a Temporal Application from
+  scratch in Go
