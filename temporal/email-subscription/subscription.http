@@ -1,0 +1,17 @@
+POST http://localhost:4000/subscribe
+Content-Type: application/json
+
+{
+  "email": "me@fancyemail.com"
+}
+
+###
+GET http://localhost:4000/details?email=me@fancyemail.com
+
+###
+POST http://localhost:4000/unsubscribe
+Content-Type: application/json
+
+{
+  "email": "me@fancyemail.com"
+}
