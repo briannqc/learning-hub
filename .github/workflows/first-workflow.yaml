@@ -1,5 +1,5 @@
 name: First Workflow
-on: [ push ]
+on: [push]
 jobs:
   run-shell-commands:
     runs-on: ubuntu-22.04
@@ -17,7 +17,7 @@ jobs:
         run: sw_vers
   dependant-job-windows:
     runs-on: windows-latest
-    needs: [ run-shell-commands, parallel-job-macos ]
+    needs: [run-shell-commands, parallel-job-macos]
     steps:
       - name: echo a string
         run: Write-Output "Windows String"

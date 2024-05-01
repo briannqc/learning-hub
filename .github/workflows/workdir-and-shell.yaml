@@ -1,0 +1,26 @@
+name: Working Dirs and Shells
+on: [push]
+jobs:
+  display-workdir-and-shell:
+    runs-on: windows-latest
+    steps:
+      - name: Each platform has one default shell, it's pwsh for Windows
+        run: |
+          Get-Location
+          echo "SHA: $env:GITHUB_SHA"
+          echo "Repo: $env:GITHUB_REPOSITORY"
+          echo "Workspace: $env:GITHUB_WORKSPACE"
+      - name: Python shell - Change the shell at steps level, also jobs and workflows level
+        shell: Python
+        run: |
+          import platform
+          print(platform.processor())
+      - name: We can also change the workdir at steps level, also jobs and workflows level
+        working-directory: "C:\\Program Files"
+        shell: bash
+        run: |
+          pwd
+          ls -lah
+          echo "SHA: ${GITHUB_SHA}"
+          echo "Repo: ${GITHUB_REPOSITORY}"
+          echo "Workspace: ${GITHUB_WORKSPACE}"
