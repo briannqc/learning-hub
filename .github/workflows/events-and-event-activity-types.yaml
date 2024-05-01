@@ -1,0 +1,12 @@
+name: Events and Event Activity Types
+on:
+  pull_request:
+    types: [opened, closed]
+  issues:
+    types: [opened, reopened, closed]
+jobs:
+  events-and-activity-types:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print event
+        run: echo "::notice title=${{ github.event_name }} on ${{ github.ref }}::Workflow runs on event ${{ github.event_name }} ${{ github.event }}"
