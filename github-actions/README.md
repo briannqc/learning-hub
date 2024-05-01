@@ -27,3 +27,60 @@ succeed or fail. We can rerun a Workflow Run, which results in another Attempt o
 Workflow (static) 1 ---> N Workflow Runs (dynamic, cancellable, rerunnable)
 Workflow Run 1 ---> N Attempts (When rerun)
 ```
+
+## [Events that trigger workflows](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows)
+
+You can configure your workflows to run when specific activity on GitHub happens, at a scheduled time, or when an event
+outside of GitHub occurs. Most events also have event activity types to increase the granularity. For
+example, Workflows with `on: issues` run for all issues related events, while Workflows with
+`on: issues: types: [opened]` only run when new issues are open.
+
+Some common events are:
+- push
+- issues
+  - opened
+  - edited
+  - deleted
+  - transferred
+  - pinned
+  - unpinned
+  - closed
+  - reopened
+  - assigned
+  - unassigned
+  - labeled
+  - unlabeled
+  - locked
+  - unlocked
+  - milestoned
+  - demilestoned
+- pull_request:
+  - assigned
+  - unassigned
+  - labeled
+  - unlabeled
+  - opened
+  - edited
+  - closed
+  - reopened
+  - synchronize
+  - converted_to_draft
+  - locked
+  - unlocked
+  - enqueued
+  - dequeued
+  - milestoned
+  - demilestoned
+  - ready_for_review
+  - review_requested
+  - review_request_removed
+  - auto_merge_enabled
+  - auto_merge_disabled
+- release
+  - published
+  - unpublished
+  - created
+  - edited
+  - deleted
+  - prereleased
+  - released
