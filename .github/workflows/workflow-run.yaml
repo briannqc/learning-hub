@@ -1,0 +1,10 @@
+name: Workflow Run
+on:
+  workflow_run:
+    workflows: [Events and Event Activity Types]
+    types: [completed]
+jobs:
+  echo-string:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "I was triggered becase 'Events and Event Activity Types' was completed"
