@@ -1,5 +1,5 @@
 name: Workflow Commands
-on: [ push ]
+on: [push]
 jobs:
   test-workflow-commands:
     runs-on: ubuntu-latest
