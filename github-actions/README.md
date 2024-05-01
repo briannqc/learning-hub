@@ -84,3 +84,7 @@ Some common events are:
   - deleted
   - prereleased
   - released
+- workflow_run
+  - completed
+  - requested
+  - in_progress
