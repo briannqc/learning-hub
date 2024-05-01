@@ -1,0 +1,25 @@
+name: Workflow Commands
+on: [ push ]
+jobs:
+  test-workflow-commands:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setting an error message
+        run: echo "::error::Displaying an error message"
+      - name: Setting an error message with params
+        run: echo "::error title=Error title,file=app.js,line=2,endLine=3,col=5,endCol=7::Error message with params"
+      - name: Setting a debug message with params
+        run: echo "::debug title=Debug title,file=app.js,line=2,endLine=3,col=5,endCol=7::Debug message with params"
+      - name: Setting a warning message with params
+        run: echo "::warning title=Warning title,file=app.js,line=2,endLine=3,col=5,endCol=7::Warning message with params"
+      - name: Setting an notice message with params
+        run: echo "::notice title=Notice title,file=app.js,line=2,endLine=3,col=5,endCol=7::Notice message with params"
+      - name: Group of logs
+        run: |
+          echo "::group::My Group title"
+          echo "Everything inside this group comes between ::group:: and ::endgroup::"
+          echo "::endgroup::"
+      - name: Masking a value
+        run: echo "::add-mask::Secret String"
+      - name: Echo a secret
+        run: echo "Secret String"
