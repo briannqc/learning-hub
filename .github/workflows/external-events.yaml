@@ -1,0 +1,9 @@
+name: External Events
+on:
+  repository_dispatch:
+    types: [build]
+jobs:
+  echo-a-string:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo env=${{ github.event.client_payload.env }} custom_field1=${{ github.event.client_payload.custom_field1 }}
