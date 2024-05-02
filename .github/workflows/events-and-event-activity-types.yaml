@@ -1,5 +1,13 @@
 name: Events and Event Activity Types
 on:
+  push:
+    branches:
+      - main
+      - "feature/*"
+    tags:
+      - v1.*
+    paths:
+      - "**.go"
   pull_request:
     types: [opened, closed]
   issues:
