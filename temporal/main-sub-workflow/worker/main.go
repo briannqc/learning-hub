@@ -18,6 +18,7 @@ func main() {
 
 	w := worker.New(c, app.OnboardTaskQueue, worker.Options{})
 	w.RegisterWorkflow(app.OnboardWorkflow)
+	w.RegisterWorkflow(app.OnboardWithGoroutineWorkflow)
 	w.RegisterWorkflow(app.HROnboardWorkflow)
 	w.RegisterWorkflow(app.ITOnboardWorkflow)
 	w.RegisterActivity(app.SignEmploymentAgreement)
