@@ -40,6 +40,49 @@ func OnboardWorkflow(ctx workflow.Context, input OnboardInput) (OnboardOutput, e
 	return OnboardOutput{Successful: true}, nil
 }
 
+func OnboardWithGoroutineWorkflow(ctx workflow.Context, input OnboardInput) (OnboardOutput, error) {
+	logger := workflow.GetLogger(ctx)
+	ch := workflow.NewChannel(ctx)
+	wg := workflow.NewWaitGroup(ctx)
+	wg.Add(2)
+
+	workflow.Go(ctx, func(ctx workflow.Context) {
+		out, err := HROnboardWorkflow(ctx, input)
+		if err != nil {
+			logger.Error("HROnboarding failed.", "Error", err)
+			ch.Send(ctx, err)
+		} else {
+			ch.Send(ctx, out)
+		}
+		wg.Done()
+	})
+
+	workflow.Go(ctx, func(ctx workflow.Context) {
+		out, err := ITOnboardWorkflow(ctx, input)
+		if err != nil {
+			logger.Error("HROnboarding failed.", "Error", err)
+			ch.Send(ctx, err)
+		} else {
+			ch.Send(ctx, out)
+		}
+		wg.Done()
+	})
+
+	workflow.Go(ctx, func(ctx workflow.Context) {
+		wg.Wait(ctx)
+		ch.Close()
+	})
+
+	var out any
+	for ch.Receive(ctx, &out) {
+		if err, ok := out.(error); ok {
+			logger.Error("Onboarding failed.", "Error", err)
+			return OnboardOutput{}, err
+		}
+	}
+	return OnboardOutput{Successful: true}, nil
+}
+
 func HROnboardWorkflow(ctx workflow.Context, input OnboardInput) (OnboardOutput, error) {
 	options := workflow.ActivityOptions{
 		StartToCloseTimeout: 5 * time.Second,

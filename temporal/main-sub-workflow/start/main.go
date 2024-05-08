@@ -31,7 +31,7 @@ func main() {
 		TaskQueue: app.OnboardTaskQueue,
 	}
 
-	we, err := c.ExecuteWorkflow(context.Background(), options, app.OnboardWorkflow, input)
+	we, err := c.ExecuteWorkflow(context.Background(), options, app.OnboardWithGoroutineWorkflow, input)
 	if err != nil {
 		log.Fatalln("Unable to execute workflow", err)
 	}
