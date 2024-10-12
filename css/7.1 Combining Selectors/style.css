@@ -1,0 +1,26 @@
+/* Write your code here: */
+
+/* GROUP selector selects all selectors and apply the style to all of them */
+h1, h2 {
+    color: blueviolet;
+}
+
+/* CHILD selects direct (1 level) children only */
+.box > .done {
+    color: firebrick;
+}
+
+/* DESCENDANT selects all descendants of all level */
+.box li {
+    color: blue;
+}
+
+/* CHAINING apply where ALL selectors are true */
+li.done {
+    color: seagreen;
+}
+
+/* Combine combiners */
+ul p.done {
+    font-size: 0.5rem;
+}

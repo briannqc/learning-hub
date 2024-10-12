@@ -1,0 +1,26 @@
+/* Don't change the existing CSS. */
+
+/* Type: ID selector is more specific than Class selector */
+#outer-box {
+  background-color: purple;
+}
+
+.box {
+  background-color: blue;
+  padding: 10px;
+}
+
+p {
+  color: yellow;
+  margin: 0;
+  padding: 0;
+}
+
+/* Position: Rules defined below override those defined above */
+.inner-box {
+  background-color: red;
+}
+
+.white-text {
+  color: white;
+}
