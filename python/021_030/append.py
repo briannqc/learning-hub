@@ -1,3 +1,4 @@
 students = ["A", "B", "C"]
 students.append("D")
-print(students)
+
+assert students == ["A", "B", "C", "D"]
